@@ -9,6 +9,8 @@ model_name = "meta/llama-2-7b"  # Replace with the actual model path or Hugging 
 tokenizer = LlamaTokenizer.from_pretrained(model_name)
 model = LlamaForCausalLM.from_pretrained(model_name, torch_dtype=torch.float16)
 
+bucket = []
+
 # categories for classification
 categories = ["Cardiology", "Neurology", "Oncology", "Orthopedics", "Pediatrics", "General"]
 
