@@ -1,8 +1,12 @@
+from flask import Flask, request, jsonify
 import torch
 from transformers import LlamaForCausalLM, LlamaTokenizer, pipeline
 from sklearn.cluster import KMeans
 import pandas as pd
 import numpy as np
+
+
+app = Flask(__name__)
 
 # Load LLaMA Model (e.g., Llama-2-7b)
 model_name = "meta/llama-2-7b"  # Replace with the actual model path or Hugging Face name
@@ -56,30 +60,47 @@ def map_doctor_to_report(category):
             return doctor["name"]
     return "No suitable doctor found"
 
-# Analyze patient reports
-def analyze_patient_reports(reports):
-    analysis_results = []
-    
-    for report in reports:
-        category = classify_report_with_llama(report)
-        priority = prioritize_report(report)
-        assigned_doctor = map_doctor_to_report(category)
-        
-        analysis_results.append({
-            "report": report,
-            "category": category,
-            "priority": priority,
-            "assigned_doctor": assigned_doctor
-        })
-    
-    return analysis_results
+@app.route('/analyze', methods=['POST'])
+def analyze_patient_reports():
+    report = request.json.get('report')
+    category = classify_report_with_llama(report)
+    priority = prioritize_report(report)
+    assigned_doctor = map_doctor_to_report(category)
+    result = {
+        "report": report,
+        "category": category,
+        "priority": priority,
+        "assigned_doctor": assigned_doctor
+    }
+    return jsonify(result)
 
-# Process reports and print results
-results = analyze_patient_reports(patient_reports)
-for result in results:
-    print(f"Report: {result['report']}")
-    print(f"Category: {result['category']}")
-    print(f"Priority: {result['priority']}")
-    print(f"Assigned Doctor: {result['assigned_doctor']}")
-    print("-" * 60)
+if __name__ == '__main__':
+    app.run(debug=True)
+
+# # Analyze patient reports
+# def analyze_patient_reports(reports):
+#     analysis_results = []
+    
+#     for report in reports:
+#         category = classify_report_with_llama(report)
+#         priority = prioritize_report(report)
+#         assigned_doctor = map_doctor_to_report(category)
+        
+#         analysis_results.append({
+#             "report": report,
+#             "category": category,
+#             "priority": priority,
+#             "assigned_doctor": assigned_doctor
+#         })
+    
+#     return analysis_results
+
+# # Process reports and print results
+# results = analyze_patient_reports(patient_reports)
+# for result in results:
+#     print(f"Report: {result['report']}")
+#     print(f"Category: {result['category']}")
+#     print(f"Priority: {result['priority']}")
+#     print(f"Assigned Doctor: {result['assigned_doctor']}")
+#     print("-" * 60)
 
