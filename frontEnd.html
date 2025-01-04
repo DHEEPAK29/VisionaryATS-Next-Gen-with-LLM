@@ -9,15 +9,27 @@
             font-family: Arial, sans-serif;
             margin: 20px;
             padding: 0;
-            background-color: #f0f2f5;
+            background-color: #e0f7fa;
         }
         h1 {
-            color: #333;
+            color: #00796b;
+            text-align: center;
+            margin-bottom: 20px;
         }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .centered-label { text-align: center; font-weight: bold; color: #000000; margin: 20px 0; }
         label {
             font-weight: bold;
             display: block;
             margin-top: 10px;
+            color: #004d40;
         }
         input[type="text"], textarea {
             width: 100%;
@@ -33,20 +45,23 @@
             margin-bottom: 10px;
         }
         button {
-            background-color: #007bff;
+            background-color: #00796b;
             color: white;
             padding: 10px 20px;
             border: none;
             border-radius: 5px;
             font-size: 16px;
             cursor: pointer;
+            display: block;
+            width: 100%;
+            margin-top: 10px;
         }
         button:hover {
-            background-color: #0056b3;
+            background-color: #004d40;
         }
         #result {
             margin-top: 20px;
-            background-color: white;
+            background-color: #e0f2f1;
             padding: 20px;
             border-radius: 5px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -56,10 +71,11 @@
         }
         .result-item p {
             margin: 5px 0;
+            color: #004d40;
         }
         .highlight {
             font-weight: bold;
-            color: #007bff;
+            color: #00796b;
         }
     </style>
     <script>
@@ -98,21 +114,25 @@
     </script>
 </head>
 <body>
-    <h1>Patient Report Analysis</h1>
-    <p>Please enter the patient details and report below, then click "Analyze Report" to categorize the report, determine its priority, and assign a suitable doctor.</p>
-    <label for="name">Name:</label>
-    <input type="text" id="name" placeholder="Enter patient name...">
-    <label for="patientId">Patient ID:</label>
-    <input type="text" id="patientId" placeholder="Enter patient ID...">
-    <label for="billNumber">Bill Number:</label>
-    <input type="text" id="billNumber" placeholder="Enter bill number...">
-    <label for="doctorName">Doctor Name:</label>
-    <input type="text" id="doctorName" placeholder="Enter doctor name...">
-    <label for="report">Patient Report:</label>
-    <textarea id="report" placeholder="Enter patient report here..."></textarea><br>
-    <label for="attachments">Attach PDF documents:</label>
-    <input type="file" id="attachments" accept="application/pdf"><br>
-    <button onclick="analyzeReport()">Analyze Report</button>
-    <div id="result"></div>
+    <div class="container">
+        <h1>Patient Report Analysis</h1>
+        <p>Please enter the patient details and report below, then click "Analyze Report" to categorize the report, determine its priority, and assign a suitable doctor.</p>
+        <label for="name">Name:</label>
+        <input type="text" id="name" placeholder="Enter patient name...">
+        <label for="patientId">Patient ID:</label>
+        <input type="text" id="patientId" placeholder="Enter patient ID...">
+        <label for="billNumber">Bill Number:</label>
+        <input type="text" id="billNumber" placeholder="Enter bill number...">
+        <label for="doctorName">Doctor Name:</label>
+        <input type="text" id="doctorName" placeholder="Enter doctor name...">
+        <label for="report">Patient Report:</label>
+        <textarea id="report" placeholder="Enter patient report here..."></textarea><br>
+        <div class="centered-label">OR</div>
+        <label for="attachments">Attach PDF documents:</label>
+        <input type="file" id="attachments" accept="application/pdf"><br>
+        <textarea id="report" placeholder="Your Parsed Text.."></textarea><br>
+        <button onclick="analyzeReport()">Analyze Report</button>
+        <div id="result"></div>
+    </div>
 </body>
 </html>
