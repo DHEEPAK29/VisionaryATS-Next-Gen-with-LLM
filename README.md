@@ -6,6 +6,10 @@ VisionaryATS intelligently analyzes, categorizes, and prioritizes patient report
 The system incorporates natural language processing (NLP) and machine learning to automate report analysis, optimize patient-doctor mapping, and provide actionable insights. 
 With its intuitive, scalable, and AI-driven architecture, VisionaryATS not only sets a new standard in healthcare management but also transforms how medical data is processed and utilized, improving both patient care and efficiency.
 
+New Tasks:
+1. Leaflet.js addition
+
 ![image](https://github.com/user-attachments/assets/c52cbbdc-6ae5-47c5-acd5-b1aaa9cc0771)
 
 ![image](https://github.com/user-attachments/assets/94427bc6-c23f-4850-9cff-ed78bf4d5863)
+
