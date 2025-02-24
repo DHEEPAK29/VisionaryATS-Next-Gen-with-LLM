@@ -6,6 +6,23 @@ import pandas as pd
 import numpy as np
 
 
+'''
+llm= OpenAI()
+embeddings = OpenAIEmbeddings()
+
+pinecone.init(environment="gcp-starter")
+index_name = "example-index"
+
+if index_name not in pinecone.list_indexes():
+    pinecone.create_index(name=index_name, metric="cosine", dimension=1536)
+    docsearch = Pinecone.from_documents(texts, embeddings, index_name=index_name)
+else:
+    docsearch = Pinecone.from_existing_index(index_name, embeddings)
+
+chain = load_qa_chain(llm, chain_type="stuff")
+
+'''
+
 app = Flask(__name__)
 
 # Load LLaMA Model (e.g., Llama-2-7b)
